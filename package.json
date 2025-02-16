@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-contentful-types": "npx cf-content-types-generator -s $CONTENTFUL_SPACE_ID -t $CONTENTFUL_MANAGEMENT_TOKEN -X -o src/contentful"
   },
   "dependencies": {
     "next": "15.1.7",
@@ -18,11 +19,15 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cf-content-types-generator": "^2.15.5",
+    "contentful": "^11.4.6",
+    "dotenv": "^16.4.7",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
     "postcss": "^8",
     "prettier": "^3.5.1",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
