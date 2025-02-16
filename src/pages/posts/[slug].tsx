@@ -1,5 +1,8 @@
 import { Post, PostsService } from '@/contentful/posts.service';
 import type { InferGetStaticPropsType, GetStaticProps, GetStaticPaths } from 'next';
+import Link from 'next/link';
+import { remark } from 'remark';
+import html from 'remark-html';
 
 const postsService = new PostsService();
 
@@ -21,14 +24,21 @@ export const getStaticPaths = (async () => {
 export const getStaticProps = (async context => {
   const post = await postsService.getPostBySlug(context.params!.slug as string);
 
+  const processedContent = await remark().use(html).process(post.fields.content);
+  const contentHtml = processedContent.toString();
+
+  post.fields.content = contentHtml;
+
   return { props: { post } };
 }) satisfies GetStaticProps<PostProps>;
 
-export default function Page({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default async function Page({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
       <h1>{post.fields.title}</h1>
-      <div>{post.fields.content}</div>
+      <div dangerouslySetInnerHTML={{ __html: post.fields.content }} />
+      <hr />
+      <Link href="/posts">Back to posts</Link>
     </div>
   );
 }
