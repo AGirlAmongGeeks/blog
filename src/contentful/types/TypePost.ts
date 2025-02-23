@@ -5,12 +5,16 @@ import type {
   EntrySkeletonType,
   LocaleCode,
 } from 'contentful';
+import type { TypeCategorySkeleton } from './TypeCategory';
 
 export interface TypePostFields {
   title: EntryFieldTypes.Symbol;
   slug: EntryFieldTypes.Symbol;
-  tags?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
   content: EntryFieldTypes.Text;
+  coverImage?: EntryFieldTypes.AssetLink;
+  date: EntryFieldTypes.Date;
+  tags?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
+  categories?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeCategorySkeleton>>;
 }
 
 export type TypePostSkeleton = EntrySkeletonType<TypePostFields, 'post'>;
