@@ -1,3 +1,1 @@
-const isDev = process.env.NODE_ENV !== 'production';
-
-export const basePath = isDev ? '' : '/nextghpages';
+export const basePath = process.env.BASE_PATH || '';

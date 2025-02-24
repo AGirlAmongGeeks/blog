@@ -9,10 +9,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   return (
     <div>
       <h1>{post.fields.title}</h1>
-      <div
-        className="prose-lg max-[767px]:prose"
-        dangerouslySetInnerHTML={{ __html: contentHtml }}
-      />
+      <div className="prose" dangerouslySetInnerHTML={{ __html: contentHtml }} />
       <hr />
       <Link href="/">Home</Link>
     </div>
