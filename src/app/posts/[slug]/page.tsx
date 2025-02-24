@@ -1,20 +1,18 @@
-import { PostsService } from '@/contentful/posts.service';
+import postsService from '@/services/posts.service';
+import contentService from '@/services/content.service';
 import Link from 'next/link';
-import { remark } from 'remark';
-import html from 'remark-html';
-
-const postsService = new PostsService();
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const post = await postsService.getPostBySlug((await params).slug);
-
-  const processedContent = await remark().use(html).process(post.fields.content);
-  const contentHtml = processedContent.toString();
+  const contentHtml = await contentService.getHtmlContent(post.fields.content);
 
   return (
     <div>
       <h1>{post.fields.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+      <div
+        className="prose-lg max-[767px]:prose"
+        dangerouslySetInnerHTML={{ __html: contentHtml }}
+      />
       <hr />
       <Link href="/">Home</Link>
     </div>

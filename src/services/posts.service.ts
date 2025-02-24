@@ -1,14 +1,14 @@
 import * as contentful from 'contentful';
-import { TypePostSkeleton } from './types/TypePost';
+import { TypePostSkeleton } from './contentful-types/TypePost';
 
-export type Post = contentful.Entry<TypePostSkeleton, undefined, string>;
+export type Post = contentful.Entry<TypePostSkeleton, undefined, 'en-US'>;
 
 type PaginationOptions = {
   limit: number;
   skip: number;
 };
 
-export class PostsService {
+class PostsService {
   private client = contentful.createClient({
     space: process.env.CONTENTFUL_SPACE_ID!,
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
@@ -24,7 +24,9 @@ export class PostsService {
       order: '-fields.date' as any,
       limit,
       skip,
+      include: 1,
     });
+
     return response.items;
   }
 
@@ -32,6 +34,7 @@ export class PostsService {
     const post = await this.client.getEntries<TypePostSkeleton>({
       content_type: 'post',
       'fields.slug': slug,
+      include: 1,
     });
 
     if (post.items.length === 0) {
@@ -41,3 +44,7 @@ export class PostsService {
     return post.items[0];
   }
 }
+
+const postsService = new PostsService();
+
+export default postsService;

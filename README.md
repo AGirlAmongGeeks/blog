@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Required variables
+
+CONTENTFUL_SPACE_ID
+CONTENTFUL_ACCESS_TOKEN
+CONTENTFUL_ENVIRONMENT
+
+## Get content types
+
+`npx cf-content-types-generator -s $CONTENTFUL_SPACE_ID -t $CONTENTFUL_MANAGEMENT_TOKEN -X -o src/services/contentful-types`
+
 ## Getting Started
 
 First, run the development server:
