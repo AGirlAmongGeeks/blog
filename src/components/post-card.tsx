@@ -5,28 +5,45 @@ import { Asset } from 'contentful';
 import Link from 'next/link';
 
 export default function PostCard({ post }: { post: Post }) {
-  const coverImageSrc =
+  const coverImageSrcWide =
     post.fields.coverImage &&
     imagesService.getImage(post.fields.coverImage as Asset, {
-      width: 400,
-      height: 600,
+      width: 800,
+      height: 300,
       fit: 'thumb',
     });
 
-  const backgroundStyle = {
-    background: `linear-gradient(180deg, #ffffff00 0%, #ffffff00 10%, #ffffffee 60%, #ffffffff 100%), url(${coverImageSrc}) no-repeat`,
-  };
+  const coverImageSrcSide =
+    post.fields.coverImage &&
+    imagesService.getImage(post.fields.coverImage as Asset, {
+      width: 200,
+      height: 300,
+      fit: 'thumb',
+    });
 
   return (
-    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-      <Link className="block pt-10" href={`/posts/${post.fields.slug}`} style={backgroundStyle}>
-        <div className="px-5 pb-5 pt-14">
-          <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-2">
-            {post.fields.title}
-          </h5>
+    <Link className="block" href={`/posts/${post.fields.slug}`}>
+      <div className="card hover:glass bg-base-100 md:card-side shadow-xl h-[250px]">
+        <figure>
+          <img
+            className="w-[100%] md:hidden"
+            src={coverImageSrcWide}
+            alt={(post.fields.coverImage as Asset).fields.title}
+          />
+          <img
+            className="h-[100%] max-md:hidden"
+            src={coverImageSrcSide}
+            alt={(post.fields.coverImage as Asset).fields.title}
+          />
+        </figure>
+        <div className="card-body md:max-w-[70%] lg:max-w-[350px]">
+          <h2 className="card-title">{post.fields.title}</h2>
+          <p className="line-clamp-2 max-h-[50px]">{contentService.getLead(post.fields.content)}</p>
+          {/* <div className="card-actions justify-end">
+            <button className="btn btn-primary">Read</button>
+          </div> */}
         </div>
-        <div className="px-5 mb-5 line-clamp-3">{contentService.getLead(post.fields.content)}</div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }

@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
-import * as lineClamp from '@tailwindcss/line-clamp';
+// import * as lineClamp from '@tailwindcss/line-clamp';
 import typography from '@tailwindcss/typography';
+import daisyui from 'daisyui';
 
 export default {
   content: [
@@ -16,5 +17,5 @@ export default {
       },
     },
   },
-  plugins: [lineClamp, typography],
+  plugins: [typography, daisyui],
 } satisfies Config;

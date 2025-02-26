@@ -8,8 +8,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   return (
     <div>
-      <h1>{post.fields.title}</h1>
-      <div className="prose" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+      <h1 className="prose">{post.fields.title}</h1>
+      <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: contentHtml }} />
       <hr />
       <Link href="/">Home</Link>
     </div>

@@ -4,8 +4,8 @@ import { TypePostSkeleton } from './contentful-types/TypePost';
 export type Post = contentful.Entry<TypePostSkeleton, undefined, 'en-US'>;
 
 type PaginationOptions = {
-  limit: number;
-  skip: number;
+  limit?: number;
+  skip?: number;
 };
 
 class PostsService {
