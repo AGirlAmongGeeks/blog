@@ -29,12 +29,12 @@ export default function PostCard({ post }: { post: Post }) {
           <img
             className="w-[100%] md:hidden"
             src={coverImageSrcWide}
-            alt={(post.fields.coverImage as Asset).fields.title}
+            alt={((post.fields.coverImage as Asset).fields?.title ?? '') as string}
           />
           <img
             className="h-[100%] max-md:hidden"
             src={coverImageSrcSide}
-            alt={(post.fields.coverImage as Asset).fields.title}
+            alt={((post.fields.coverImage as Asset).fields?.title ?? '') as string}
           />
         </figure>
         <div className="card-body md:max-w-[70%] lg:max-w-[350px]">
