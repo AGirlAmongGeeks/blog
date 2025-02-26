@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import contentService from '@/services/content.service';
 import imagesService from '@/services/images.service';
 import { Post } from '@/services/posts.service';
