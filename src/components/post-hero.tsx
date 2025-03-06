@@ -15,7 +15,7 @@ export default function PostHero({ post }: { post: Post }) {
   return (
     <Link className="block" href={`/posts/${post.fields.slug}`}>
       <div
-        className="hero h-[500px] rounded-lg"
+        className="hero h-[500px] rounded-[12px] overflow-hidden"
         style={{
           backgroundImage: `url(${coverImageSrc})`,
         }}

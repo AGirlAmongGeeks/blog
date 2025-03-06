@@ -24,7 +24,7 @@ export default function PostCard({ post }: { post: Post }) {
 
   return (
     <Link className="block" href={`/posts/${post.fields.slug}`}>
-      <div className="card hover:glass bg-base-100 md:card-side shadow-xl h-[250px]">
+      <div className="card glass md:card-side shadow-xl h-[250px]">
         <figure>
           <img
             className="w-[100%] md:hidden"
