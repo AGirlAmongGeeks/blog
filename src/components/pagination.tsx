@@ -8,6 +8,8 @@ type Params = {
 };
 
 export function Pagination({ currentPage, total, pathTemplate = '/list/$pageNumber' }: Params) {
+  if (currentPage === 1 && total <= pagination.homePagePosts) return null;
+
   if (currentPage === 1 && total > pagination.homePagePosts)
     return (
       <div className="flex justify-center pb-4">
