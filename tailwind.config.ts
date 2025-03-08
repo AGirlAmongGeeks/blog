@@ -18,9 +18,11 @@ export default {
   },
   daisyui: {
     themes: [
-      process.env.THEME_HOME || 'lemonade',
-      process.env.THEME_LIST || 'garden',
-      process.env.THEME_BLOG_POST || 'retro',
+      ...new Set([
+        process.env.THEME_HOME || 'lemonade',
+        process.env.THEME_LIST || 'garden',
+        process.env.THEME_BLOG || 'retro',
+      ]),
     ],
   },
   plugins: [typography, daisyui],

@@ -25,6 +25,19 @@ jobs:
       CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
       CONTENTFUL_ENVIRONMENT: ${{ secrets.CONTENTFUL_ENVIRONMENT }}
       BASE_PATH: ${{ vars.BASE_PATH }}
+      APP_META_TITLE: ${{ vars.APP_META_TITLE }}
+      APP_META_DESCRIPTION: ${{ vars.APP_META_DESCRIPTION }}
+      APP_META_FACEBOOK_URL: ${{ vars.APP_META_FACEBOOK }}
+      APP_META_INSTAGRAM_URL: ${{ vars.APP_META_INSTAGRAM }}
+      APP_META_LINKEDIN_URL: ${{ vars.APP_META_LINKEDIN }}
+      APP_META_GITHUB_URL: ${{ vars.APP_META_GITHUB }}
+      PAGINATION_PER_PAGE: ${{ vars.PAGINATION_PER_PAGE }}
+      PAGINATION_HOME_PAGE_POSTS: ${{ vars.PAGINATION_HOME_PAGE_POSTS }}
+      PAGINATION_HOME_PAGE_FEATURED_POSTS: ${{ vars.PAGINATION_HOME_PAGE_FEATURED_POSTS }}
+      THEME_HOME: ${{ vars.THEME_HOME }}
+      THEME_BLOG: ${{ vars.THEME_BLOG }}
+      THEME_LIST: ${{ vars.THEME_LIST }}
+      THEME_LOGO: ${{ vars.THEME_LOGO }}
 
     steps:
       - name: Checkout 🛎️
@@ -44,6 +57,11 @@ jobs:
           path: .next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
+      - name: Override logo 🖼️
+        if: ${{ env.THEME_LOGO != ''}}
+        run: |
+          echo %THEME_LOGO% > public/favicon.svg
 
       - name: Build with Next.js 🏗️
         run: npm run build

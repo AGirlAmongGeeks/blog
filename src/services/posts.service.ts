@@ -1,7 +1,9 @@
 import * as contentful from 'contentful';
 import { TypePostSkeleton } from './contentful-types/TypePost';
+import { TypeCategorySkeleton } from './contentful-types/TypeCategory';
 
 export type Post = contentful.Entry<TypePostSkeleton, undefined, 'en-US'>;
+export type CategoryPost = contentful.Entry<TypeCategorySkeleton, undefined, 'en-US'>;
 
 export type PaginatedResponse<T> = {
   total: number;

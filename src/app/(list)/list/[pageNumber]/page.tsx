@@ -7,12 +7,13 @@ import { metadata } from '@/config/metadata';
 type PageParams = {
   pageNumber: string;
 };
-const pageNotFoundText = 'not_found';
+
+const pageNotFoundText = 'not-found';
 
 export default async function Page({ params }: { params: Promise<PageParams> }) {
   const paramsValue = await params;
 
-  if(paramsValue.pageNumber === pageNotFoundText) throw new Error('Page not found');
+  if (paramsValue.pageNumber === pageNotFoundText) return null;
 
   const posts = await postsService.getPosts({
     limit: pagination.perPage,
@@ -27,10 +28,10 @@ export default async function Page({ params }: { params: Promise<PageParams> }) 
   );
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<PageParams[]> {
   const posts = await postsService.getPosts();
 
-  if (posts.total <= pagination.homePagePosts) return [pageNotFoundText];
+  if (posts.total <= pagination.homePagePosts) return [{ pageNumber: pageNotFoundText }];
 
   return Array.from(
     { length: Math.ceil((posts.total - pagination.homePagePosts) / pagination.perPage) - 1 },
@@ -45,3 +46,5 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
     title: `Page ${(await params).pageNumber} - ${metadata.title}`,
   };
 }
+
+export const dynamic = 'force-static';

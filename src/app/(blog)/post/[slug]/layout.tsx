@@ -3,6 +3,7 @@ import postsService from '@/services/posts.service';
 import { Asset } from 'contentful';
 import { geistSans, geistMono } from '@/components/typography/geistSans';
 import { theme } from '@/config/theme';
+import { basePath } from '@/config/base-path';
 
 export default async function PostLayout({
   children,
@@ -23,6 +24,9 @@ export default async function PostLayout({
 
   return (
     <html lang="en" data-theme={theme.post}>
+      <head>
+        <link rel="icon" href={`${basePath}/favicon.svg`} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased pt-[200px]`}
         style={newLocal}
