@@ -24,7 +24,7 @@ export default async function Page({ params }: { params: Promise<PageParams> }) 
   );
 }
 
-export async function generateStaticParams(): Promise<PageParams[]> {
+export async function generateStaticParams() {
   const posts = await postsService.getPosts();
 
   if (posts.total <= pagination.homePagePosts) return [];
