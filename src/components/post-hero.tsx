@@ -13,7 +13,7 @@ export default function PostHero({ post }: { post: Post }) {
     });
 
   return (
-    <Link className="block" href={`/posts/${post.fields.slug}`}>
+    <Link className="block" href={`/post/${post.fields.slug}`}>
       <div
         className="hero h-[500px] rounded-[12px] overflow-hidden"
         style={{

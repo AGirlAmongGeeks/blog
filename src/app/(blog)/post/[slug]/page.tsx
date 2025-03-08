@@ -15,8 +15,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 }
 
 export async function generateStaticParams() {
-  const posts = await postsService.getPosts();
-  return posts.map(post => ({ slug: post.fields.slug }));
+  const posts = await postsService.getPosts({ limit: 1000 });
+  return posts.items.map(post => ({ slug: post.fields.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {

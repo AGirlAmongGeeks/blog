@@ -2,6 +2,7 @@ import Layout from '@/components/layout';
 import postsService from '@/services/posts.service';
 import { Asset } from 'contentful';
 import { geistSans, geistMono } from '@/components/typography/geistSans';
+import { theme } from '@/config/theme';
 
 export default async function PostLayout({
   children,
@@ -21,7 +22,7 @@ export default async function PostLayout({
   };
 
   return (
-    <html lang="en" data-theme="retro">
+    <html lang="en" data-theme={theme.post}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased pt-[200px]`}
         style={newLocal}

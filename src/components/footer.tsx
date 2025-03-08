@@ -2,7 +2,7 @@ import { metadata } from '@/config/metadata';
 
 export default function Header() {
   return (
-    <footer className="footer bg-neutral text-neutral-content py-10 px-20">
+    <footer className="footer bg-neutral text-neutral-content lg:py-10 lg:px-20 p-5">
       <aside>
         <svg
           width="50"

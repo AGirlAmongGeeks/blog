@@ -3,6 +3,11 @@ import { TypePostSkeleton } from './contentful-types/TypePost';
 
 export type Post = contentful.Entry<TypePostSkeleton, undefined, 'en-US'>;
 
+export type PaginatedResponse<T> = {
+  total: number;
+  items: T[];
+};
+
 type PaginationOptions = {
   limit?: number;
   skip?: number;
@@ -17,7 +22,7 @@ class PostsService {
 
   async getPosts(
     { limit = 12, skip = 0 }: PaginationOptions = { limit: 12, skip: 0 },
-  ): Promise<Post[]> {
+  ): Promise<PaginatedResponse<Post>> {
     const response = await this.client.getEntries<TypePostSkeleton>({
       content_type: 'post',
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -27,7 +32,10 @@ class PostsService {
       include: 1,
     });
 
-    return response.items;
+    return {
+      total: response.total,
+      items: response.items,
+    };
   }
 
   async getPostBySlug(slug: string): Promise<Post> {

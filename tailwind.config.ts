@@ -1,5 +1,4 @@
 import type { Config } from 'tailwindcss';
-// import * as lineClamp from '@tailwindcss/line-clamp';
 import typography from '@tailwindcss/typography';
 import daisyui from 'daisyui';
 
@@ -18,7 +17,11 @@ export default {
     },
   },
   daisyui: {
-    themes: ['lemonade', 'retro'],
+    themes: [
+      process.env.THEME_HOME || 'lemonade',
+      process.env.THEME_LIST || 'garden',
+      process.env.THEME_BLOG_POST || 'retro',
+    ],
   },
   plugins: [typography, daisyui],
 } satisfies Config;

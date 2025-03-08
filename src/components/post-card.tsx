@@ -23,7 +23,7 @@ export default function PostCard({ post }: { post: Post }) {
     });
 
   return (
-    <Link className="block" href={`/posts/${post.fields.slug}`}>
+    <Link className="block" href={`/post/${post.fields.slug}`}>
       <div className="card glass md:card-side shadow-xl h-[250px]">
         <figure>
           <img
@@ -40,9 +40,6 @@ export default function PostCard({ post }: { post: Post }) {
         <div className="card-body md:max-w-[70%] lg:max-w-[350px]">
           <h2 className="card-title">{post.fields.title}</h2>
           <p className="line-clamp-2 max-h-[50px]">{contentService.getLead(post.fields.content)}</p>
-          {/* <div className="card-actions justify-end">
-            <button className="btn btn-primary">Read</button>
-          </div> */}
         </div>
       </div>
     </Link>
