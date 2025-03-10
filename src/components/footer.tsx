@@ -1,18 +1,14 @@
-import { basePath } from '@/config/base-path';
 import { metadata } from '@/config/metadata';
-import Image from 'next/image';
+import { theme } from '@/config/theme';
+import Link from 'next/link';
 
 export default function Header() {
   return (
     <footer className="footer bg-neutral text-neutral-content lg:py-10 lg:px-20 p-5">
       <aside>
-        <Image
-          className="dark:invert"
-          src={`${basePath}/favicon.svg`}
-          alt="Vercel logomark"
-          width={150}
-          height={150}
-        />
+        <Link href="/">
+          <div className="logo" dangerouslySetInnerHTML={{ __html: theme.logoSvg }}></div>
+        </Link>
         <p>
           {metadata.title}
           <br />

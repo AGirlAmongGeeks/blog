@@ -37,7 +37,7 @@ jobs:
       THEME_HOME: ${{ vars.THEME_HOME }}
       THEME_BLOG: ${{ vars.THEME_BLOG }}
       THEME_LIST: ${{ vars.THEME_LIST }}
-      THEME_LOGO: ${{ vars.THEME_LOGO }}
+      THEME_LOGO_SVG: ${{ vars.THEME_LOGO_SVG }}
 
     steps:
       - name: Checkout 🛎️
@@ -59,9 +59,9 @@ jobs:
           restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
       - name: Override logo 🖼️
-        if: ${{ env.THEME_LOGO != ''}}
+        if: ${{ env.THEME_LOGO_SVG != ''}}
         run: |
-          echo %THEME_LOGO% > public/favicon.svg
+          echo %THEME_LOGO_SVG% > public/favicon.svg
 
       - name: Build with Next.js 🏗️
         run: npm run build

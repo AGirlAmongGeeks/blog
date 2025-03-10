@@ -17,7 +17,7 @@ export default async function Page({ params }: { params: Promise<PageParams> }) 
 
   const posts = await postsService.getPosts({
     limit: pagination.perPage,
-    skip: (+paramsValue.pageNumber - 1) * pagination.perPage + pagination.featuredPosts,
+    skip: (+paramsValue.pageNumber - 2) * pagination.perPage + pagination.homePagePosts,
   });
 
   return (
@@ -34,7 +34,7 @@ export async function generateStaticParams(): Promise<PageParams[]> {
   if (posts.total <= pagination.homePagePosts) return [{ pageNumber: pageNotFoundText }];
 
   return Array.from(
-    { length: Math.ceil((posts.total - pagination.homePagePosts) / pagination.perPage) - 1 },
+    { length: Math.ceil((posts.total - pagination.homePagePosts) / pagination.perPage) },
     (_, i) => ({
       pageNumber: (i + 2).toString(),
     }),
