@@ -8,14 +8,15 @@
 
 header .title {
   transition: all 0.1s;
-  --fill1: 4px;
-  --gap1: 1px;
-  --fill2: 4px;
-  --gap2: 1px;
+  --fill1: 2px;
+  --gap1: 2px;
+  --fill2: 2px;
+  --gap2: 2px;
   --color1: currentColor;
   --color2: currentColor;
 
   background:
+    linear-gradient(90deg, var(--color1) 0, transparent 100%),
     repeating-linear-gradient(
       45deg,
       var(--color1),
