@@ -1,14 +1,10 @@
 import * as contentful from 'contentful';
 import { TypePostSkeleton } from './contentful-types/TypePost';
 import { TypeCategorySkeleton } from './contentful-types/TypeCategory';
+import { PaginatedResponse } from './paginatedResponse';
 
 export type Post = contentful.Entry<TypePostSkeleton, undefined, 'en-US'>;
 export type CategoryPost = contentful.Entry<TypeCategorySkeleton, undefined, 'en-US'>;
-
-export type PaginatedResponse<T> = {
-  total: number;
-  items: T[];
-};
 
 type PaginationOptions = {
   limit?: number;

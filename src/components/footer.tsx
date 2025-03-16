@@ -1,8 +1,11 @@
 import { metadata } from '@/config/metadata';
 import { theme } from '@/config/theme';
+import pagesService from '@/services/pagesService';
 import Link from 'next/link';
 
-export default function Header() {
+export default async function Header() {
+  const pages = await pagesService.getPages();
+
   return (
     <footer className="footer bg-neutral text-neutral-content lg:py-10 lg:px-20 p-5">
       <aside>
@@ -13,6 +16,14 @@ export default function Header() {
           {metadata.title}
           <br />
           {metadata.description}
+          {pages.map(page => (
+            <>
+              <br />
+              <Link key={page.sys.id} href={`/${page.fields.slug}`}>
+                {page.fields.title}
+              </Link>
+            </>
+          ))}
         </p>
       </aside>
       <nav className="md:justify-self-end">
