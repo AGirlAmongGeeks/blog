@@ -30,7 +30,7 @@ jobs:
       APP_META_FACEBOOK_URL: ${{ vars.APP_META_FACEBOOK_URL }}
       APP_META_INSTAGRAM_URL: ${{ vars.APP_META_INSTAGRAM_URL }}
       APP_META_LINKEDIN_URL: ${{ vars.APP_META_LINKEDIN_URL }}
-      APP_META_GITHUB_URL: ${{ vars.APP_META_GITHUB }}
+      APP_META_GITHUB_URL: ${{ vars.APP_META_GITHUB_URL }}
       PAGINATION_PER_PAGE: ${{ vars.PAGINATION_PER_PAGE }}
       PAGINATION_HOME_PAGE_POSTS: ${{ vars.PAGINATION_HOME_PAGE_POSTS }}
       PAGINATION_HOME_PAGE_FEATURED_POSTS: ${{ vars.PAGINATION_HOME_PAGE_FEATURED_POSTS }}
@@ -61,7 +61,8 @@ jobs:
       - name: Override logo 🖼️
         if: ${{ env.THEME_LOGO_SVG != ''}}
         run: |
-          echo %THEME_LOGO_SVG% > public/favicon.svg
+          echo '<?xml version="1.0" ?>' > public/favicon.svg
+          echo $THEME_LOGO_SVG >> public/favicon.svg
 
       - name: Build with Next.js 🏗️
         run: npm run build
