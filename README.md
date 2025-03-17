@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## GH Page
 
-https://7affer.github.io/nextghpages/
+https://agirlamonggeeks.github.io/blog
 
 ## Required variables
 
