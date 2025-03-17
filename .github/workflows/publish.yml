@@ -62,7 +62,7 @@ jobs:
         if: ${{ env.THEME_LOGO_SVG != ''}}
         run: |
           echo '<?xml version="1.0" ?>' > public/favicon.svg
-          echo %THEME_LOGO_SVG% >> public/favicon.svg
+          echo $THEME_LOGO_SVG >> public/favicon.svg
 
       - name: Build with Next.js 🏗️
         run: npm run build
