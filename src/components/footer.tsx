@@ -2,6 +2,7 @@ import { metadata } from '@/config/metadata';
 import { theme } from '@/config/theme';
 import pagesService from '@/services/pagesService';
 import Link from 'next/link';
+import { Fragment } from 'react';
 
 export default async function Header() {
   const pages = await pagesService.getPages();
@@ -17,12 +18,12 @@ export default async function Header() {
           <br />
           {metadata.description}
           {pages.map(page => (
-            <>
+            <Fragment key={page.sys.id}>
               <br />
-              <Link key={page.sys.id} href={`/${page.fields.slug}`}>
+              <Link href={`/${page.fields.slug}`}>
                 {page.fields.title}
               </Link>
-            </>
+            </Fragment>
           ))}
         </p>
       </aside>
